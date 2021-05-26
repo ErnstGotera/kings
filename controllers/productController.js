@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 // @access  Public
 const getProducts = async (req, res) => {
   const pageSize = 6;
-  const page = Number(req.query.pageNumber) || 0;
+  const page = Number(req.query.pageNumber);
   const count = await prisma.product.count();
   const products = await prisma.product.findMany({
     skip: pageSize * (page - 1),

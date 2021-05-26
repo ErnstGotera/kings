@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import Product from '../components/Product';
 import Pagination from '@material-ui/lab/Pagination';
+import PaginationItem from '@material-ui/lab/PaginationItem';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { fetchProductsStart } from '../redux/shop/actions';
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { pageNumber } = useParams() || 0;
+  const { pageNumber } = useParams();
   useEffect(() => {
     dispatch(fetchProductsStart(pageNumber));
   }, [dispatch, pageNumber]);
@@ -27,7 +28,17 @@ const Home = () => {
             <Product key={product.id} item={product} />
           ))}
           <Center>
-            <Pagination count={pages} shape='rounded' />
+            <Pagination
+              count={pages}
+              shape='rounded'
+              renderItem={(item) => (
+                <PaginationItem
+                  component={Link}
+                  to={`/${item.page === 1 ? '' : `page/${item.page}`}`}
+                  {...item}
+                />
+              )}
+            />
           </Center>
         </>
       )}

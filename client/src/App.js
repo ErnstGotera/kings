@@ -10,6 +10,7 @@ function App() {
       <Header />
       <Switch>
         <Route exact path='/' component={Home} />
+        <Route exact path='/page/:pageNumber' component={Home} />
         <Route path='/checkout' component={Checkout} />
         <Route path='/thanks/:name' component={Thanks} />
       </Switch>
