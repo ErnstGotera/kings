@@ -19,6 +19,12 @@ npm install
 
 ### 2. Create and seed the database
 
+Create a .env file on the root of the project with this code
+
+DATABASE_URL="mysql://user:password@localhost:3306/kings"
+
+replacing the user:password with your mysql user and password
+
 Run the following command to create the mysql database.
 
 ```
